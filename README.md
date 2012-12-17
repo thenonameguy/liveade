@@ -1,4 +1,12 @@
 liveade
 =======
 
-Liveade - Line evadeing side-scrolling retor game made with SFML
+Liveade - Line evadeing side-scrolling retro game made with SFML
+
+
+
+Controls
+========
+Enter - Start game
+WASD - movement
+P - pause
