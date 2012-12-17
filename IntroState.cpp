@@ -7,7 +7,20 @@
 
 IntroState::IntroState( GameEngine& game, bool replace ) : GameState( game, replace )
 {
-
+	pwidth=game.screen.getSize().x;
+	pheight=game.screen.getSize().y;
+	bg.create(pwidth,pheight);
+	sprite.setTexture(bg);
+	pixels.reserve(pwidth*pheight*4);
+	liveade.setFont(game.font);
+	liveade.setCharacterSize(30);
+	liveade.setStyle(sf::Text::Bold);
+	liveade.setString("Liveade");
+	liveade.setPosition(10,10);
+	pressEnter.setFont(game.font);
+	pressEnter.setCharacterSize(30);
+	pressEnter.setString("Press Enter");
+	pressEnter.setPosition(10,game.screen.getSize().y-40);
 }
 
 void IntroState::pause()
@@ -49,12 +62,21 @@ void IntroState::update()
             }
 		}
 	}
+	int pixelCount=pwidth*pheight*4;
+	sf::Uint8 foo=0;
+	for (int i = 0; i < pixelCount ; ++i) {
+		if(i%4==0)foo=rand()%80;
+		pixels[i]=foo;
+	}
+	bg.update(&pixels[0]);
 }
 
 void IntroState::draw()
 {
 	m_game.screen.clear();
-
+	m_game.screen.draw(sprite);
+	m_game.screen.draw(liveade);
+	m_game.screen.draw(pressEnter);
 	m_game.screen.display();
 }
 

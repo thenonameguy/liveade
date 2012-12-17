@@ -1,5 +1,6 @@
 #ifndef INTROSTATE_HPP
 #define INTROSTATE_HPP
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
@@ -18,8 +19,13 @@ public:
 	void draw();
 
 private:
-	sf::Texture m_bgTex;
-	sf::Sprite m_bg;
+	int pwidth;
+	int pheight;
+	std::vector<sf::Uint8> pixels;
+	sf::Text liveade;
+	sf::Text pressEnter;
+	sf::Texture bg;
+	sf::Sprite sprite;
 };
 
 #endif // INTROSTATE_HPP
