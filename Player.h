@@ -25,8 +25,9 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	sf::Vector2f startPos;
-	sf::Vector2f pos; //Position
-	sf::Vector2f vel; //Velocity
+	sf::Vector2f pos; 
+	sf::Vector2f acc; 
+	sf::Vector2f vel;
 	unsigned int points;
 	unsigned int bestPoint;
 	sf::Color color;

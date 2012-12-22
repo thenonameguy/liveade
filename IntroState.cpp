@@ -20,7 +20,7 @@ IntroState::IntroState( GameEngine& game, bool replace ) : GameState( game, repl
 	pressEnter.setFont(game.font);
 	pressEnter.setCharacterSize(30);
 	pressEnter.setString("Press Enter");
-	pressEnter.setPosition(10,game.screen.getSize().y-40);
+	pressEnter.setPosition(10,280);
 }
 
 void IntroState::pause()
@@ -48,11 +48,8 @@ void IntroState::update()
                 switch( event.key.code )
                 {
 					case sf::Keyboard::Return:
-                        m_next = m_game.activate<PlayState>(true);
-                        break;
-					case sf::Keyboard::P:
                         m_next = m_game.activate<PlayState>(false);
-						break;
+                        break;
 
                     case sf::Keyboard::Escape:
                         m_game.quit();
@@ -62,10 +59,22 @@ void IntroState::update()
             }
 		}
 	}
+	bool connected=sf::Joystick::isConnected(0);
+	if(connected)
+	{
+		unsigned int buttonCount=sf::Joystick::getButtonCount(0);
+		for (int i = 0; i < buttonCount; ++i) {
+			std::cout<<"Button "<<i<<" :"<<sf::Joystick::isButtonPressed(0,i)<<std::endl;
+		}
+		float xpos=sf::Joystick::getAxisPosition(0,sf::Joystick::X);
+		float ypos=sf::Joystick::getAxisPosition(0,sf::Joystick::Y);
+		std::cout<<"X: "<<xpos<<" Y: "<<ypos<<" ;"<<std::endl;
+	}
+
 	int pixelCount=pwidth*pheight*4;
 	sf::Uint8 foo=0;
 	for (int i = 0; i < pixelCount ; ++i) {
-		if(i%4==0)foo=rand()%80;
+		if(i%4==0)foo=rand()%140; 
 		pixels[i]=foo;
 	}
 	bg.update(&pixels[0]);

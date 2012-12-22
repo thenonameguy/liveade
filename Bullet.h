@@ -10,7 +10,7 @@ public:
 	Bullet():shape(sf::Vector2f(width,1)),vec(sf::Vector2f(-(rand()%4+1),0))
 	{
 		pos=sf::Vector2f(rand()%320+1,rand()%320+1);
-		color=sf::Color(rand()%128+128,rand()%255,rand()%128+128);
+		color=sf::Color(rand()%255,rand()%128+128,rand()%128+128);
 		shape.setFillColor(color);
 	}
 

@@ -29,6 +29,8 @@ public:
 private:
 	const int MAXBULLET=100;
 	Player p;
+	Player p2;
+	sf::Color clearColor;
 	sf::Font bitFont;
 	sf::Text points;
 	sf::Text highscore;

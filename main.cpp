@@ -5,7 +5,7 @@
 int main ()
 {
 	GameEngine game( "Livade" );
-	game.run( game.activate<IntroState>( true ) );
+	game.run( game.activate<IntroState>(true) );
 
 	while( game.running() )
 	{

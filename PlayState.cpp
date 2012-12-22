@@ -13,6 +13,7 @@ PlayState::PlayState( GameEngine& game, bool replace ) : GameState( game, replac
 	points.setString("Points: 0");
 	highscore.setString("Best: 0");
 	highscore.setPosition(0,15);
+	clearColor=sf::Color(30,30,30);
 
 	for (int i = 0; i < MAXBULLET; ++i) 
 	{
@@ -59,6 +60,10 @@ void PlayState::update()
 				break;
 		}
 	}
+	if(clearColor!=sf::Color(30,30,30))
+	{
+		clearColor=sf::Color(30,30,30);
+	}
 	points.setString("Points: "+p.getPoints());
 	highscore.setString("Best: "+p.getBestPoint());
 	p.update();
@@ -75,13 +80,14 @@ void PlayState::update()
 		{
 			p.die();
 			bullets[i].moveToSafe();
+			clearColor=sf::Color(40,40,40);
 		}
 	}
 }
 
 void PlayState::draw()
 {
-	m_game.screen.clear(sf::Color(30,30,30));
+	m_game.screen.clear(clearColor);
 	for (int i = 0; i < usedBullets; ++i) 
 		m_game.screen.draw(bullets[i]);
 	m_game.screen.draw(p);

@@ -5,7 +5,6 @@ void Player::reset()
 {
 	speed=2;
 	texture.loadFromFile("img/player.png");
-	texture.setSmooth(false);
 	sprite.setTexture(texture);
 	pos=startPos;
 	dead=false;
@@ -15,28 +14,25 @@ void Player::reset()
 
 void Player::update()
 {
-/*	if(dead && deadtime<10)
-	{
-		++deadtime;
-		return;
-	}
-	else
-	{
-		afterDeath();
-	}
-*/
 	++points;
 	vel=sf::Vector2f();
-	sf::Keyboard::isKeyPressed(sf::Keyboard::A)?
-		vel.x=-speed:
-		(sf::Keyboard::isKeyPressed(sf::Keyboard::D))?
-			vel.x=speed:
-			vel.x=0;
-	sf::Keyboard::isKeyPressed(sf::Keyboard::W)?
-		vel.y=-speed:
-		(sf::Keyboard::isKeyPressed(sf::Keyboard::S))?
-			vel.y=speed:
-			vel.y=0;
+	sf::Keyboard::isKeyPressed(sf::Keyboard::A)?  vel.x=-speed: (sf::Keyboard::isKeyPressed(sf::Keyboard::D))?
+				vel.x=speed:
+				vel.x=0;
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W)?
+			vel.y=-speed:
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::S))?
+				vel.y=speed:
+				vel.y=0;
+	bool connected=sf::Joystick::isConnected(0);
+	if(connected)
+	{
+		float xpos=sf::Joystick::getAxisPosition(0,sf::Joystick::X);
+		float ypos=sf::Joystick::getAxisPosition(0,sf::Joystick::Y);
+		vel.x=(xpos/50)*(xpos/50)*(xpos/50)*(MAXSPEED/2);
+		vel.y=(ypos/50)*(ypos/50)*(ypos/50)*(MAXSPEED/2);
+	} 
+
 
 	int length = sqrt(vel.x * vel.x + vel.y * vel.y);
 	if(length>MAXSPEED)
@@ -73,7 +69,6 @@ bool pointRect(float x, float y,const sf::RectangleShape& rect)
 	float rx=rect.getPosition().x;
 	float ry=rect.getPosition().y;
 	return(x>rx&&x<rx+rw&&y>ry&&y<ry+rh);
-
 }
 
 bool Player::isColliding(const sf::FloatRect& other) const
