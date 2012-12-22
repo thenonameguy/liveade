@@ -31,7 +31,7 @@ public:
     std::string getBestPoint() const
     {
         std::stringstream ss(std::stringstream::in|std::stringstream::out);
-        ss<<points;
+        ss<<bestPoint;
         return ss.str();
     }
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
