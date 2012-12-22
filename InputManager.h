@@ -1,9 +1,10 @@
 #ifndef HG_INPUTMGR
-#define HG_INPUTMGR 
+#define HG_INPUTMGR
 
-class InputManager {
+class InputManager
+{
 public:
-	InputManager();
+    InputManager();
 private:
 };
 #endif
